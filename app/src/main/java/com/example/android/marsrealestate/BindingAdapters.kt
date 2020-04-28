@@ -29,9 +29,7 @@ import com.example.android.marsrealestate.overview.PhotoGridAdapter
 @BindingAdapter("listData")
 fun bindRecyclerView(recycler: RecyclerView, data: List<MarsProperty>?) {
     val adapter = recycler.adapter as PhotoGridAdapter
-    data?.let {
         adapter.submitList(data)
-    }
 
 }
 /**
