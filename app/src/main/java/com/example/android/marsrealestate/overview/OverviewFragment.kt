@@ -25,6 +25,7 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import com.example.android.marsrealestate.R
 import com.example.android.marsrealestate.databinding.FragmentOverviewBinding
+import com.example.android.marsrealestate.network.FilterMarsApi
 
 /**
  * This fragment shows the the status of the Mars real-estate web services transaction.
@@ -81,5 +82,14 @@ class OverviewFragment : Fragment() {
         inflater.inflate(R.menu.overflow_menu, menu)
         super.onCreateOptionsMenu(menu, inflater)
     }
-    // TODO (07) override onOptionsItemSelected and have it call updateFilter on the viewmodel
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        viewModel.updateFilter(when(item?.itemId){
+            R.id.show_buy_menu -> FilterMarsApi.SHOW_BUY
+            R.id.show_rent_menu -> FilterMarsApi.SHOW_RENT
+            else -> FilterMarsApi.SHOW_ALL
+        } )
+        return true
+
+    }
 }
